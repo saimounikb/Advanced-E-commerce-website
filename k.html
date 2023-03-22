@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="online furniture, sofaset, sofas, beds!">
+    <title> Document </title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+   
+            
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="student.png" width="3%"> Mounik enterprises</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pricing.html">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Write to us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="k.html">Cart</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div style="padding: 90px;color: beige;">
+        <h2 style="font-size: 45px;color: black;">Details</h2>
+        <form name="google-sheet-form" method="post">
+            <select name="productName" required>
+                <option value="" disabled selected>enter product name</option>
+                <option value="Chair">Chair</option>
+                <option value="Bed">Bed</option>
+                <option value="Sofa">Sofa</option>
+            </select><br>
+            <input type="text" name="Name" placeholder="enter your full name" required><br>
+            <input type="email" name="Email ID" placeholder="email ID" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                required> <br>
+            <input type="tel" name="Number" placeholder="Contact Number" pattern="[0-9]{10}" required><br>
+            <textarea name="Address" cols="30" rows="10" placeholder="address" required></textarea><br>
+            <select name="mode-of-payment" required>
+                <option value="" disabled selected>mode-of-payment</option>
+                <option value="cash-on-delivery">Cash on Delivery</option>
+                <option value="upi">UPI</option>
+            </select><br><br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset">Refresh</button>
+        </form>
+    </div>
+    <hr>
+    <footer>
+        <div class="logo2">
+            <img src="logo.png" width="125" height="100">
+        </div>
+        <div class="details">
+            <h3> Information </h3>
+            <a href="home.html">about us</a>|
+            <a href="pricing.html">services</a>|
+            <a href="#">Feedback form</a>
+        </div>
+        <div class="social">
+            <h3> Social Media </h3>
+            <a href="https://www.instagram.com/saimounik04/"><i class="fa-brands fa-instagram"
+                    style="color: #f50f95;"></i></a>|
+            <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook" style="color: #0d3745;"></i></a>|
+            <a href="https://web.telegram.org/k/"><i class="fa-brands fa-telegram" style="color: #05f6fa;"></i></a>
+        </div>
+        <div class="contact">
+            <h3> Contacts </h3>
+            <a href="tel: +918125770396"><i class="fa-solid fa-phone" style="color: #55370c;"></i></a>|
+            <a href="mailto: saimounikgupta346@gmail.com"><i class="fa-solid fa-envelope" style="color: #0919fb;"></i></a>|
+            <a href="https://wa.me/+918125770396"><i class="fa-brands fa-whatsapp" style="color: #1cb526;"></i></a>
+    
+        </div>
+        <hr>
+        <p class="copy">Copyright &copy; 2022 sai mounik. All rights reserved </p>
+    </footer>
+    <!-- google sheet data collection -->
+    <script>
+        const productNameInput = document.querySelector('select[name="productName"]');
+            const nameInput = document.querySelector('input[name="Name"]');
+            const emailInput = document.querySelector('input[name="Email ID"]');
+            const numberInput = document.querySelector('input[name="Number"]');
+            const addressInput = document.querySelector('textarea[name="Address"]');
+            const paymentInput = document.querySelector('select[name="mode-of-payment"]');
+
+            function validateProductName() {
+                    if (productNameInput.value === "") {
+                        alert("Please select a product.");
+                        return false;
+                    }
+                    return true;
+                }
+
+            
+
+            function validateName() {
+                const nameRegex = /^[a-zA-Z\s]+$/;
+                if (!nameRegex.test(nameInput.value)) {
+                    alert("Please enter a valid name with only alphabets.");
+                    return false;
+                }
+                return true;
+            }
+
+            function validateEmail() {
+                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (!emailRegex.test(emailInput.value)) {
+                    alert("Please enter a valid email address.");
+                    return false;
+                }
+                return true;
+            }
+
+            function validateNumber() {
+                const numberRegex = /^[1-9]\d{9}$/;
+                if (!numberRegex.test(numberInput.value)) {
+                    alert("Please enter a valid 10-digit phone number not starting with zero.");
+                    return false;
+                }
+                return true;
+            }
+
+            function validateAddress() {
+                if (addressInput.value.trim() === "") {
+                    alert("Please enter a valid address.");
+                    return false;
+                }
+                return true;
+            }
+
+            function validatePayment() {
+                if (paymentInput.value === "") {
+                    alert("Please select a mode of payment.");
+                    return false;
+                }
+                return true;
+            }
+
+            function validateForm(event) {
+                if (
+                    !validateProductName() ||
+                    !validateName() ||
+                    !validateEmail() ||
+                    !validateNumber() ||
+                    !validateAddress() ||
+                    !validatePayment()
+                ) {
+                    event.preventDefault();
+                }
+            }
+
+            document
+                .querySelector('button[type="submit"]')
+                .addEventListener("click", validateForm);
+
+        const scriptURL =
+            'https://script.google.com/macros/s/AKfycbwM2iaGML6gyYeLyJvNxLPrwzZv1Kgo2zvHMn452Ryb4qDew2BkMWlv1XEEh61umCf3/exec'
+        const form = document.forms['google-sheet-form']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, {
+                method: 'POST',
+                body: new FormData(form)
+            })
+                .then(response => alert(
+                    "Your order has been Placed Sucessfully!!!"))
+                .catch(error => console.error('Error!', error.message))
+        })
+    const selectEl = document.querySelector('select[name="productName"]');
+    selectEl.addEventListener('change', (event) => {
+        const selectedValue = event.target.value;
+        switch (selectedValue) {
+            case 'Chair':
+                alert('You should pay $80');
+                break;
+            case 'Bed':
+                alert('You should pay $120');
+                break;
+            case 'Sofa':
+                alert('You should pay $170');
+                break;
+            default:
+                alert('Invalid product selected');
+        }
+    });
+    </script>
+
+</body>
+</html>
